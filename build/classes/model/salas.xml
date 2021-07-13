@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<salas>
+    <sala id="A">
+        <vizinhos>C</vizinhos>
+    </sala>
+    <sala id="B">
+        <vizinhos>C;D</vizinhos>
+    </sala>
+    <sala id="C">
+        <vizinhos>A;B;G</vizinhos>
+    </sala>
+    <sala id="D">
+        <vizinhos>B;E</vizinhos>
+    </sala>
+    <sala id="E">
+        <vizinhos>D;F</vizinhos>
+    </sala>
+    <sala id="F">
+        <vizinhos>E;J</vizinhos>
+    </sala>
+    <sala id="G">
+        <vizinhos>C;H;K</vizinhos>
+    </sala>
+    <sala id="H">
+        <vizinhos>G;K;I;L</vizinhos>
+    </sala>
+    <sala id="I">
+        <vizinhos>H;J</vizinhos>
+    </sala>
+    <sala id="J">
+        <vizinhos>I;M;F</vizinhos>
+    </sala>
+    <sala id="K">
+        <vizinhos>G;H;N</vizinhos>
+    </sala>
+    <sala id="L">
+        <vizinhos>H;M</vizinhos>
+    </sala>
+    <sala id="M">
+        <vizinhos>J;L;P</vizinhos>
+    </sala>
+    <sala id="N">
+        <vizinhos>K;Q;O</vizinhos>
+    </sala>
+    <sala id="O">
+        <vizinhos>N;P</vizinhos>
+    </sala>
+    <sala id="P">
+        <vizinhos>O;M;T</vizinhos>
+    </sala>
+    <sala id="Q">
+        <vizinhos>N;R</vizinhos>
+    </sala>
+    <sala id="R">
+        <vizinhos>Q;S</vizinhos>
+    </sala>
+    <sala id="S">
+        <vizinhos>R;T</vizinhos>
+    </sala>
+    <sala id="T">
+        <vizinhos>P;S;U</vizinhos>
+    </sala>
+    <sala id="U">
+        <vizinhos>T</vizinhos>
+    </sala>
+</salas>
