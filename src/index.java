@@ -1,5 +1,6 @@
 
 import controller.SalaController;
+import view.MainApp;
 import vo.SalaVO;
 
 /**
@@ -7,8 +8,6 @@ import vo.SalaVO;
  * @author maikon
  */
 public class index {
-    static SalaVO[] salas = new SalaVO[21];
-    
     public static void main(String[] args) {
         
         //Início da aplicação
@@ -21,5 +20,6 @@ public class index {
         String rota = controllerSala.CalcularRota(salaInicial, salaFinal);
         
         System.out.println("Rota percorrida de " + salaInicial.getId() + " a " + salaFinal.getId() + ": " + rota);
+        new MainApp().show();
     }
 }
