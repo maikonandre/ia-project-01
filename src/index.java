@@ -12,10 +12,10 @@ public class index {
         
         //Início da aplicação
         SalaController controllerSala = new SalaController();
-        salas = controllerSala.CarregarSalas();
+        SalaVO[] salas = controllerSala.CarregarSalas();
         
-        SalaVO salaInicial = controllerSala.FindById("T");
-        SalaVO salaFinal = controllerSala.FindById("C");
+        SalaVO salaInicial = controllerSala.FindById("A");
+        SalaVO salaFinal = controllerSala.FindById("T");
         
         String rota = controllerSala.CalcularRota(salaInicial, salaFinal);
         
