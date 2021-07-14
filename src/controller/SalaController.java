@@ -28,7 +28,6 @@ public class SalaController {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(xmlFile);
             
-            System.out.println("Root do elemento: " + doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("sala");
             
             for (int i = 0; i < nList.getLength(); i++) {
