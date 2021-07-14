@@ -7,67 +7,67 @@ and open the template in the editor.
 
 
 <salas>
-    <sala id="A">
+    <sala id="A" x="1" y="1">
         <vizinhos>C</vizinhos>
     </sala>
-    <sala id="B">
+    <sala id="B" x="2" y="1">
         <vizinhos>C;D</vizinhos>
     </sala>
-    <sala id="C">
+    <sala id="C" x="2" y="2">
         <vizinhos>A;B;G</vizinhos>
     </sala>
-    <sala id="D">
+    <sala id="D" x="3" y="1">
         <vizinhos>B;E</vizinhos>
     </sala>
-    <sala id="E">
+    <sala id="E" x="4" y="1">
         <vizinhos>D;F</vizinhos>
     </sala>
-    <sala id="F">
+    <sala id="F" x="5" y="1">
         <vizinhos>E;J</vizinhos>
     </sala>
-    <sala id="G">
+    <sala id="G" x="1" y="2">
         <vizinhos>C;H;K</vizinhos>
     </sala>
-    <sala id="H">
+    <sala id="H" x="2" y="3">
         <vizinhos>G;K;I;L</vizinhos>
     </sala>
-    <sala id="I">
+    <sala id="I" x="3" y="2">
         <vizinhos>H;J</vizinhos>
     </sala>
-    <sala id="J">
+    <sala id="J" x="4" y="2">
         <vizinhos>I;M;F</vizinhos>
     </sala>
-    <sala id="K">
+    <sala id="K" x="1" y="3">
         <vizinhos>G;H;N</vizinhos>
     </sala>
-    <sala id="L">
+    <sala id="L" x="3" y="3">
         <vizinhos>H;M</vizinhos>
     </sala>
-    <sala id="M">
+    <sala id="M" x="4" y="3">
         <vizinhos>J;L;P</vizinhos>
     </sala>
-    <sala id="N">
+    <sala id="N" x="1" y="4">
         <vizinhos>K;Q;O</vizinhos>
     </sala>
-    <sala id="O">
+    <sala id="O" x="2" y="4">
         <vizinhos>N;P</vizinhos>
     </sala>
-    <sala id="P">
+    <sala id="P" x="3" y="4">
         <vizinhos>O;M;T</vizinhos>
     </sala>
-    <sala id="Q">
+    <sala id="Q" x="1" y="5">
         <vizinhos>N;R</vizinhos>
     </sala>
-    <sala id="R">
+    <sala id="R" x="2" y="5">
         <vizinhos>Q;S</vizinhos>
     </sala>
-    <sala id="S">
+    <sala id="S" x="3" y="5">
         <vizinhos>R;T</vizinhos>
     </sala>
-    <sala id="T">
+    <sala id="T" x="4" y="4">
         <vizinhos>P;S;U</vizinhos>
     </sala>
-    <sala id="U">
+    <sala id="U" x="5" y="2">
         <vizinhos>T</vizinhos>
     </sala>
 </salas>

@@ -39,6 +39,8 @@ public class SalaController {
                     
                     SalaVO newSala = new SalaVO();
                     newSala.setId(eElement.getAttribute("id"));
+                    newSala.setX(Integer.parseInt(eElement.getAttribute("x")));
+                    newSala.setY(Integer.parseInt(eElement.getAttribute("y")));
                     String listVizinhos[] = eElement.getElementsByTagName("vizinhos").item(0).getTextContent().split(";");
                     newSala.setVizinhos(listVizinhos);
                     
