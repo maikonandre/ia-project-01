@@ -14,12 +14,15 @@ public class index {
         SalaController controllerSala = new SalaController();
         SalaVO[] salas = controllerSala.CarregarSalas();
         
-        SalaVO salaInicial = controllerSala.FindById("A");
-        SalaVO salaFinal = controllerSala.FindById("T");
+        SalaVO salaInicial = controllerSala.FindById("U");
+        SalaVO salaFinal = controllerSala.FindById("I");
         
-        String rota = controllerSala.CalcularRota(salaInicial, salaFinal);
+        String rotaSimulatedComManhattan = controllerSala.CalcularRotaSimulatedManhattan(salaInicial, salaFinal);
+        String rotaSimulated = controllerSala.CalcularRotaSimulated(salaInicial, salaFinal);
         
-        System.out.println("Rota percorrida de " + salaInicial.getId() + " a " + salaFinal.getId() + ": " + rota);
+        System.out.println("[Simulated com Manhattan]: Rota percorrida de " + salaInicial.getId() + " a " + salaFinal.getId() + ": " + rotaSimulatedComManhattan);
+        System.out.println("[Simulated]: Rota percorrida de " + salaInicial.getId() + " a " + salaFinal.getId() + ": " + rotaSimulated);
+        
         new MainApp().show();
     }
 }

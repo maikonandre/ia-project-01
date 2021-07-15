@@ -8,6 +8,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import vo.SalaVO;
+import java.util.Arrays;
 
 /**
  *
@@ -75,7 +76,7 @@ public class SalaController {
         return sala;
     }
     
-    public int CalcularDiferenca(SalaVO sala1, SalaVO sala2){
+    public int CalcularDiferencaManhattan(SalaVO sala1, SalaVO sala2){
         int calcX = sala2.getX() - sala1.getX();
         int calcY = sala2.getY() - sala1.getY();
         
@@ -85,7 +86,94 @@ public class SalaController {
         return calcX + calcY;
     }
     
-    public String CalcularRota(SalaVO salaInicial, SalaVO salaFinal) {
+    public String CalcularRotaSimulated(SalaVO salaInicial, SalaVO salaFinal) {
+        
+        String[] caminho = new String[100];
+        caminho[0] = salaInicial.getId();
+        
+        try{
+            int loop = 1;
+            
+            boolean encontrou = true;
+            
+            while(!salaInicial.getId().equals(salaFinal.getId())) {
+                
+                if(loop == 100) {
+                    caminho = null;
+                    break;
+                }
+                
+                String[] vizinhos = salaInicial.getVizinhos();
+                
+                if(encontrou == false){
+                    Arrays.sort(vizinhos);
+                }
+                
+                int loopVizinhos = 0;
+                
+                for(String v : vizinhos){
+                    loopVizinhos += 1;
+                    
+                    boolean passou = false;
+                    
+                    if(v == null) break;
+                    
+                    for(String c : caminho){
+                        
+                        if(c == null) break;
+                        
+                        if(c.equals(v) && encontrou == true){
+                            passou = true;
+                            break;
+                        }
+                    }
+                    
+                    if(!passou) {
+                        caminho[loop] = v;
+                        
+                        loop += 1;
+                        
+                        salaInicial = this.FindById(v);
+                        
+                        encontrou = true;
+                        
+                        break;
+                    }
+                    else{
+                        if(loopVizinhos == vizinhos.length) {
+                            encontrou = false;
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        
+        String rota = "";
+        
+        if(caminho != null) {
+            if(caminho.length > 0) {
+                for(String c : caminho){
+                    if(c == null) break;
+                    rota += c + ", ";
+                }
+
+                rota = rota.substring(0, rota.length() - 2);
+
+            }else{
+                rota = "Não foi possível determinar uma rota!";
+            }
+        }
+        else{
+            rota = "Não foi possível determinar uma rota!";
+        }
+        
+        return rota;
+    }
+    
+    public String CalcularRotaSimulatedManhattan(SalaVO salaInicial, SalaVO salaFinal) {
         
         String[] caminho = new String[100];
         
@@ -94,7 +182,7 @@ public class SalaController {
         try{        
             int loop = 1;
 
-            while(CalcularDiferenca(salaInicial, salaFinal) != 0){
+            while(CalcularDiferencaManhattan(salaInicial, salaFinal) != 0){
                 caminho[loop] = salaInicial.getId();
 
                 String[] vizinhos = salaInicial.getVizinhos();
@@ -124,39 +212,39 @@ public class SalaController {
                 }
                 
                 if(provaveisCaminhos.length == 0) {
-                        Exception ex = new Exception("Nenhum caminho possível foi encontrado!");
-                        throw ex;
-                    }
-                    else{
-                        String caminhoMenor = "";
-                        int caminhoMenorValor = 100;
-                        
-                        for(String s2 : provaveisCaminhos){
-                            
-                            if(s2 != null){
-                                SalaVO salaTeste = this.FindById(s2);
-                                int diferencaTeste = this.CalcularDiferenca(salaTeste, salaFinal);
+                    Exception ex = new Exception("Nenhum caminho possível foi encontrado!");
+                    throw ex;
+                }
+                else{
+                    String caminhoMenor = "";
+                    int caminhoMenorValor = 100;
 
-                                if(diferencaTeste < caminhoMenorValor){
-                                    caminhoMenorValor = diferencaTeste;
-                                    caminhoMenor = salaTeste.getId();
-                                }
-                            }
-                            else{
-                                break;
+                    for(String s2 : provaveisCaminhos){
+
+                        if(s2 != null){
+                            SalaVO salaTeste = this.FindById(s2);
+                            int diferencaTeste = this.CalcularDiferencaManhattan(salaTeste, salaFinal);
+
+                            if(diferencaTeste < caminhoMenorValor){
+                                caminhoMenorValor = diferencaTeste;
+                                caminhoMenor = salaTeste.getId();
                             }
                         }
-                        
-                        caminho[loop] = caminhoMenor;
-                        
-                        salaInicial = this.FindById(caminhoMenor);
-                        
-                        loop += 1;
+                        else{
+                            break;
+                        }
                     }
+
+                    caminho[loop] = caminhoMenor;
+
+                    salaInicial = this.FindById(caminhoMenor);
+
+                    loop += 1;
+                }
             }   
         }     
         catch (Exception ex){
-            
+            System.out.println("Erro: " + ex.getMessage());
         }
         
         String rota = "";
