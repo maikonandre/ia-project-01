@@ -18,6 +18,7 @@ public class MainApp extends javax.swing.JFrame {
         initComponents();
         
         jLabelResult.setVisible(false);
+        jLabelResultMoves.setVisible(false);
         InicializaSalas();
     }
     
@@ -43,6 +44,7 @@ public class MainApp extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanelResultados = new javax.swing.JPanel();
         jLabelResult = new javax.swing.JLabel();
+        jLabelResultMoves = new javax.swing.JLabel();
         jLabelPSaida = new javax.swing.JLabel();
         jComboBoxPSaida = new javax.swing.JComboBox<>();
         jLabelPDestino = new javax.swing.JLabel();
@@ -50,8 +52,6 @@ public class MainApp extends javax.swing.JFrame {
         jLabelAlgoritmo = new javax.swing.JLabel();
         jComboBoxAlgoritmo = new javax.swing.JComboBox<>();
         jButtonSimular = new javax.swing.JButton();
-        jLabelHeuristica = new javax.swing.JLabel();
-        jComboBoxHeuristica = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("IA - Projeto Nº. 1");
@@ -80,12 +80,19 @@ public class MainApp extends javax.swing.JFrame {
         jLabelResult.setText("jLabel6");
         jLabelResult.setRequestFocusEnabled(false);
 
+        jLabelResultMoves.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
+        jLabelResultMoves.setForeground(new java.awt.Color(197, 84, 20));
+        jLabelResultMoves.setText("jLabel6");
+        jLabelResultMoves.setRequestFocusEnabled(false);
+
         javax.swing.GroupLayout jPanelResultadosLayout = new javax.swing.GroupLayout(jPanelResultados);
         jPanelResultados.setLayout(jPanelResultadosLayout);
         jPanelResultadosLayout.setHorizontalGroup(
             jPanelResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelResultadosLayout.createSequentialGroup()
-                .addComponent(jLabelResult)
+                .addGroup(jPanelResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelResult)
+                    .addComponent(jLabelResultMoves))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelResultadosLayout.setVerticalGroup(
@@ -93,7 +100,9 @@ public class MainApp extends javax.swing.JFrame {
             .addGroup(jPanelResultadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelResult)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jLabelResultMoves)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jLabelPSaida.setText("Ponto de saída:");
@@ -106,7 +115,7 @@ public class MainApp extends javax.swing.JFrame {
 
         jLabelAlgoritmo.setText("Algoritmo:");
 
-        jComboBoxAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simulated Annealing", "Hill-Climbing" }));
+        jComboBoxAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim. Annealing", "Sim. Annealing C/ Manhattan", "Hill-Climbing" }));
 
         jButtonSimular.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jButtonSimular.setText("SIMULAR");
@@ -116,10 +125,6 @@ public class MainApp extends javax.swing.JFrame {
                 jButtonSimularActionPerformed(evt);
             }
         });
-
-        jLabelHeuristica.setText("Aplicar Heurística?");
-
-        jComboBoxHeuristica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim", "Não" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,10 +156,8 @@ public class MainApp extends javax.swing.JFrame {
                                     .addComponent(jLabelPSaida)
                                     .addComponent(jLabelAlgoritmo)
                                     .addComponent(jComboBoxAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelPDestino)
-                                    .addComponent(jLabelHeuristica)
-                                    .addComponent(jComboBoxHeuristica, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonSimular, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButtonSimular, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelPDestino))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
@@ -180,19 +183,15 @@ public class MainApp extends javax.swing.JFrame {
                         .addComponent(jLabelPSaida)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxPSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabelPDestino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxPDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabelAlgoritmo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabelHeuristica)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxHeuristica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(66, 66, 66)
                         .addComponent(jButtonSimular)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jPanelResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,57 +208,65 @@ public class MainApp extends javax.swing.JFrame {
         SalaVO salaInicial = controllerSala.FindById(jComboBoxPSaida.getSelectedItem().toString());
         SalaVO salaFinal = controllerSala.FindById(jComboBoxPDestino.getSelectedItem().toString());
         
-        if ("Simulated Annealing".equals(jComboBoxAlgoritmo.getSelectedItem().toString())) {
+        if (jComboBoxAlgoritmo.getSelectedIndex() == 0) {
             
-            if ("Sim".equals(jComboBoxHeuristica.getSelectedItem().toString())) {
-                
-                String rotaSimulatedComManhattan = controllerSala.CalcularRotaSimulatedManhattan(salaInicial, salaFinal);
-                jLabelResult.setText("<html>" +
-                                        "<p style=\"width:500px\">" +
-                                            "[Simulated com Manhattan]: Rota percorrida de " + salaInicial.getId() + " à " + salaFinal.getId() + ": " + rotaSimulatedComManhattan +
-                                        "<p>" +
-                                     "</html>");
-                
-                jLabelResult.setVisible(true);
-            }
-            else if("Não".equals(jComboBoxHeuristica.getSelectedItem().toString())) {
-                
-                String rotaSimulated = controllerSala.CalcularRotaSimulated(salaInicial, salaFinal);
-                jLabelResult.setText("<html>" +
-                                        "<p style=\"width:500px\">" +
-                                            "[Simulated]: Rota percorrida de " + salaInicial.getId() + " à " + salaFinal.getId() + ": " + rotaSimulated +
-                                        "<p>" +
-                                     "</html>");
-                jLabelResult.setVisible(true);
-            }
-            else {
-                
-                jLabelResult.setText("Heurística inválida!");
-                jLabelResult.setVisible(true);
-            }
+            String rotaSimulated = controllerSala.CalcularRotaSimulated(salaInicial, salaFinal);
+            String[] rotaMovimentos = rotaSimulated.split(",");
+            
+            jLabelResult.setText("<html>" +
+                                    "<p style=\"width:500px\">" +
+                                        "[Simulated]: Rota percorrida de " + salaInicial.getId() + " à " + salaFinal.getId() + ": " + rotaSimulated +
+                                    "<p>" +
+                                 "</html>");            
+            
+            jLabelResultMoves.setText("<html>" +
+                                    "<p style=\"width:500px\">" +
+                                        "Total de movimentos: <strong style=\"font-weight:bold; color: red;\">" + (rotaMovimentos.length - 1) + "</strong>" +
+                                    "<p>" +
+                                 "</html>");
+            
+            jLabelResult.setVisible(true);
+            jLabelResultMoves.setVisible(true);
         }
-        else if ("Hill-Climbing".equals(jComboBoxAlgoritmo.getSelectedItem().toString())) {
+        else if (jComboBoxAlgoritmo.getSelectedIndex() == 1) {
             
-            if ("Sim".equals(jComboBoxHeuristica.getSelectedItem().toString())) {
-                
+            String rotaSimulatedComManhattan = controllerSala.CalcularRotaSimulatedManhattan(salaInicial, salaFinal);
+            String[] rotaMovimentos = rotaSimulatedComManhattan.split(",");
+            
+            jLabelResult.setText("<html>" +
+                                    "<p style=\"width:500px\">" +
+                                        "[Simulated com Manhattan]: Rota percorrida de " + salaInicial.getId() + " à " + salaFinal.getId() + ": " + rotaSimulatedComManhattan +
+                                    "<p>" +
+                                 "</html>");
+            
+            jLabelResultMoves.setText("<html>" +
+                                    "<p style=\"width:500px\">" +
+                                        "Total de movimentos: <strong style=\"font-weight:bold; color: red;\">" + (rotaMovimentos.length - 1) + "</strong>" +
+                                    "<p>" +
+                                 "</html>");
 
-            }
-            else if("Não".equals(jComboBoxHeuristica.getSelectedItem().toString())) {
-                
-                String rotaHillClimb = controllerSala.CalcularRotaHillClimbing(salaInicial, salaFinal);
-                jLabelResult.setText("<html>" +
-                                        "<p style=\"width:500px\">" +
-                                            "[Hill-Climbing]: Rota percorrida de " + salaInicial.getId() + " à " + salaFinal.getId() + ": " + rotaHillClimb +
-                                        "<p>" +
-                                     "</html>");
-                
-                jLabelResult.setVisible(true);
-            }
-            else {
-                
-                jLabelResult.setText("Heurística inválida!");
-                jLabelResult.setVisible(true);
-            }
+            jLabelResult.setVisible(true);
+            jLabelResultMoves.setVisible(true);
+        }
+        else if (jComboBoxAlgoritmo.getSelectedIndex() == 2) {
+            
+            String rotaHillClimb = controllerSala.CalcularRotaHillClimbing(salaInicial, salaFinal);
+            String[] rotaMovimentos = rotaHillClimb.split(",");
+            
+            jLabelResult.setText("<html>" +
+                                    "<p style=\"width:500px\">" +
+                                        "[Hill-Climbing]: Rota percorrida de " + salaInicial.getId() + " à " + salaFinal.getId() + ": " + rotaHillClimb +
+                                    "<p>" +
+                                 "</html>");
+            
+            jLabelResultMoves.setText("<html>" +
+                                    "<p style=\"width:500px\">" +
+                                        "Total de movimentos: <strong style=\"font-weight:bold; color: red;\">" + (rotaMovimentos.length - 1) + "</strong>" +
+                                    "<p>" +
+                                 "</html>");
+
+            jLabelResult.setVisible(true); 
+            jLabelResultMoves.setVisible(true);
         }
         else {
             
@@ -304,7 +311,6 @@ public class MainApp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSimular;
     private javax.swing.JComboBox<String> jComboBoxAlgoritmo;
-    private javax.swing.JComboBox<String> jComboBoxHeuristica;
     private javax.swing.JComboBox<String> jComboBoxPDestino;
     private javax.swing.JComboBox<String> jComboBoxPSaida;
     private javax.swing.JLabel jLabel1;
@@ -313,10 +319,10 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelAlgoritmo;
-    private javax.swing.JLabel jLabelHeuristica;
     private javax.swing.JLabel jLabelPDestino;
     private javax.swing.JLabel jLabelPSaida;
     private javax.swing.JLabel jLabelResult;
+    private javax.swing.JLabel jLabelResultMoves;
     private javax.swing.JPanel jPanelResultados;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

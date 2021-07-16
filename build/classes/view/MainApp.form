@@ -58,10 +58,8 @@
                                   <Component id="jLabelPSaida" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelAlgoritmo" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jComboBoxAlgoritmo" min="-2" pref="223" max="-2" attributes="0"/>
-                                  <Component id="jLabelPDestino" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelHeuristica" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxHeuristica" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
                                   <Component id="jButtonSimular" min="-2" pref="223" max="-2" attributes="0"/>
+                                  <Component id="jLabelPDestino" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -97,19 +95,15 @@
                       <Component id="jLabelPSaida" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxPSaida" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabelPDestino" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxPDestino" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabelAlgoritmo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jComboBoxAlgoritmo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="jLabelHeuristica" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBoxHeuristica" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Component id="jButtonSimular" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -179,8 +173,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="jLabelResult" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabelResult" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelResultMoves" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -190,7 +187,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelResult" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="108" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="jLabelResultMoves" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="60" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -203,6 +202,18 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="0" id="blue" palette="1" red="0" type="palette"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="jLabel6"/>
+            <Property name="requestFocusEnabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelResultMoves">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Cantarell" size="15" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="14" green="54" red="c5" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel6"/>
             <Property name="requestFocusEnabled" type="boolean" value="false"/>
@@ -292,9 +303,10 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxAlgoritmo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="Simulated Annealing"/>
-            <StringItem index="1" value="Hill-Climbing"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Sim. Annealing"/>
+            <StringItem index="1" value="Sim. Annealing C/ Manhattan"/>
+            <StringItem index="2" value="Hill-Climbing"/>
           </StringArray>
         </Property>
       </Properties>
@@ -313,24 +325,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSimularActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelHeuristica">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Aplicar Heur&#xed;stica?"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBoxHeuristica">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="Sim"/>
-            <StringItem index="1" value="N&#xe3;o"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

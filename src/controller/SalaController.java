@@ -270,33 +270,50 @@ public class SalaController {
         return rota;
     }
     
+    /* Método p/ cálculo de rota utilizando Hill-Climbing */
     public String CalcularRotaHillClimbing(SalaVO salaInicial, SalaVO salaFinal) {
         
+        // String que armazena as salas percorridas
         String caminho = salaInicial.getId() + ", ";
+        
+        // Limite de movimentos p/ a simulação
         int maxMoves = 100;
+        
+        // Sala atual durante o percurso
         SalaVO salaAtual = salaInicial;
+        
+        // Última sala vizinha no percurso
         String ultVizinho = "";
+        
+        // Força a seleção do primeiro vizinho (evita entrar em loop infinito)
         int forcePrimeiroVizinho = 0;
         
+        // Início da simulação
         for (int i = 0; i < maxMoves; i++) {           
             
+            // Mantém a melhor opção atual
             SalaVO melhorOpcao = salaAtual;
             
+            // Percorre os vizinhoa da sala atual
             for (String vizinho : salaAtual.getVizinhos()) {
                 
+                // Sala iterada
                 SalaVO salaIterator = FindById(vizinho);
                 
+                // Força atualizar a primeira vez (Evitar loop infinito)
                 if (forcePrimeiroVizinho < 1) {
                     melhorOpcao = salaIterator;
                     ultVizinho = vizinho;
                 }
                 else {
-                    
+                    // Cálculo de distâncias através do parâmetro de posição
                     int passosMelhorOp = (melhorOpcao.getPos() < salaFinal.getPos()) ? (salaFinal.getPos() - melhorOpcao.getPos()) : (melhorOpcao.getPos() - salaFinal.getPos());
                     int passosIterator = (salaIterator.getPos() < salaFinal.getPos()) ? (salaFinal.getPos() - salaIterator.getPos()) : (salaIterator.getPos() - salaFinal.getPos());
 
+                    // Verifica se a sala destino está na mesma região da sala iterada
                     if (salaIterator.getRegion().equals(salaFinal.getRegion())) {
 
+                        // Verifica a distância da sala iterada é menor que a atual melhor opção
                         if (passosIterator < passosMelhorOp) {
                             melhorOpcao = salaIterator;
                             ultVizinho = vizinho;
@@ -319,18 +336,22 @@ public class SalaController {
                 
             }
             
+            // Atualiza a sala atual após as validações do algoritmo
             salaAtual = melhorOpcao;
             forcePrimeiroVizinho = 0;
             
             caminho += ultVizinho + ", ";
             
+            // Se encontrar a solução, encerra
             if (salaFinal.getId().equals(salaAtual.getId())) {
                 break;
             }
         }
         
+        // Remove a última vírgula da string
         caminho = caminho.substring(0, caminho.length()-2);
         
         return caminho;
     }
+    
 }
