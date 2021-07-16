@@ -41,6 +41,8 @@ public class SalaController {
                     newSala.setId(eElement.getAttribute("id"));
                     newSala.setX(Integer.parseInt(eElement.getAttribute("x")));
                     newSala.setY(Integer.parseInt(eElement.getAttribute("y")));
+                    newSala.setPos(Integer.parseInt(eElement.getAttribute("pos")));
+                    newSala.setRegion(eElement.getAttribute("region"));
                     String listVizinhos[] = eElement.getElementsByTagName("vizinhos").item(0).getTextContent().split(";");
                     newSala.setVizinhos(listVizinhos);
                     
@@ -266,5 +268,69 @@ public class SalaController {
         }
         
         return rota;
+    }
+    
+    public String CalcularRotaHillClimbing(SalaVO salaInicial, SalaVO salaFinal) {
+        
+        String caminho = salaInicial.getId() + ", ";
+        int maxMoves = 100;
+        SalaVO salaAtual = salaInicial;
+        String ultVizinho = "";
+        int forcePrimeiroVizinho = 0;
+        
+        for (int i = 0; i < maxMoves; i++) {           
+            
+            SalaVO melhorOpcao = salaAtual;
+            
+            for (String vizinho : salaAtual.getVizinhos()) {
+                
+                SalaVO salaIterator = FindById(vizinho);
+                
+                if (forcePrimeiroVizinho < 1) {
+                    melhorOpcao = salaIterator;
+                    ultVizinho = vizinho;
+                }
+                else {
+                    
+                    int passosMelhorOp = (melhorOpcao.getPos() < salaFinal.getPos()) ? (salaFinal.getPos() - melhorOpcao.getPos()) : (melhorOpcao.getPos() - salaFinal.getPos());
+                    int passosIterator = (salaIterator.getPos() < salaFinal.getPos()) ? (salaFinal.getPos() - salaIterator.getPos()) : (salaIterator.getPos() - salaFinal.getPos());
+
+                    if (salaIterator.getRegion().equals(salaFinal.getRegion())) {
+
+                        if (passosIterator < passosMelhorOp) {
+                            melhorOpcao = salaIterator;
+                            ultVizinho = vizinho;
+                        }
+
+                    }
+                    else {
+
+                        if (!melhorOpcao.getRegion().equals(salaFinal.getRegion())) {
+
+                            if (passosIterator < passosMelhorOp) {
+                                melhorOpcao = salaIterator;
+                                ultVizinho = vizinho;
+                            }
+                        }
+                    }
+                }
+                
+                forcePrimeiroVizinho++;
+                
+            }
+            
+            salaAtual = melhorOpcao;
+            forcePrimeiroVizinho = 0;
+            
+            caminho += ultVizinho + ", ";
+            
+            if (salaFinal.getId().equals(salaAtual.getId())) {
+                break;
+            }
+        }
+        
+        caminho = caminho.substring(0, caminho.length()-2);
+        
+        return caminho;
     }
 }

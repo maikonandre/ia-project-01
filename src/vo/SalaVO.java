@@ -9,6 +9,8 @@ public class SalaVO {
     private String id;
     private int x;
     private int y;
+    private int pos;
+    private String region;
     private String[] vizinhos;
 
     /**
@@ -51,6 +53,34 @@ public class SalaVO {
     public void setY(int y) {
         this.y = y;
     }
+    /**
+     * @return the pos
+     */
+    public int getPos() {
+        return pos;
+    }
+
+    /**
+     * @param pos the pos to set
+     */
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
+    
+    /**
+     * @return the region
+     */
+    public String getRegion() {
+        return region;
+    }
+
+    /**
+     * @param region the region to set
+     */
+    public void setRegion(String region) {
+        this.region = region;
+    }
+    
     /**
      * @return the vizinhos
      */

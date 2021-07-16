@@ -9,17 +9,20 @@ import vo.SalaVO;
  */
 public class MainApp extends javax.swing.JFrame {
     static SalaVO[] salas = new SalaVO[21];
+    SalaController controllerSala;
+    
     /**
      * Creates new form MainApp
      */
     public MainApp() {
         initComponents();
         
+        jLabelResult.setVisible(false);
         InicializaSalas();
     }
     
     public void InicializaSalas() {
-        SalaController controllerSala = new SalaController();
+        controllerSala = new SalaController();
         salas = controllerSala.CarregarSalas();
     }
 
@@ -38,7 +41,8 @@ public class MainApp extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelResultados = new javax.swing.JPanel();
+        jLabelResult = new javax.swing.JLabel();
         jLabelPSaida = new javax.swing.JLabel();
         jComboBoxPSaida = new javax.swing.JComboBox<>();
         jLabelPDestino = new javax.swing.JLabel();
@@ -46,9 +50,13 @@ public class MainApp extends javax.swing.JFrame {
         jLabelAlgoritmo = new javax.swing.JLabel();
         jComboBoxAlgoritmo = new javax.swing.JComboBox<>();
         jButtonSimular = new javax.swing.JButton();
+        jLabelHeuristica = new javax.swing.JLabel();
+        jComboBoxHeuristica = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("IA - Projeto Nº. 1");
+        setMaximumSize(new java.awt.Dimension(802, 685));
+        setResizable(false);
 
         jLabel3.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
         jLabel3.setText("Inteligência Artificial");
@@ -62,18 +70,30 @@ public class MainApp extends javax.swing.JFrame {
 
         jLabel5.setText("Ambiente utilizado como exemplo");
 
-        jPanel1.setBackground(java.awt.Color.white);
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Dialog", 1, 12))); // NOI18N
+        jPanelResultados.setBackground(java.awt.Color.white);
+        jPanelResultados.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BELOW_TOP, new java.awt.Font("Dialog", 1, 12))); // NOI18N
+        jPanelResultados.setAutoscrolls(true);
+        jPanelResultados.setMaximumSize(new java.awt.Dimension(60, 165));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jLabelResult.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
+        jLabelResult.setForeground(java.awt.Color.blue);
+        jLabelResult.setText("jLabel6");
+        jLabelResult.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout jPanelResultadosLayout = new javax.swing.GroupLayout(jPanelResultados);
+        jPanelResultados.setLayout(jPanelResultadosLayout);
+        jPanelResultadosLayout.setHorizontalGroup(
+            jPanelResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelResultadosLayout.createSequentialGroup()
+                .addComponent(jLabelResult)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
+        jPanelResultadosLayout.setVerticalGroup(
+            jPanelResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelResultadosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelResult)
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jLabelPSaida.setText("Ponto de saída:");
@@ -86,46 +106,57 @@ public class MainApp extends javax.swing.JFrame {
 
         jLabelAlgoritmo.setText("Algoritmo:");
 
-        jComboBoxAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Hill Climbing Simples", "2 - Hill Climbing c/ Heurística", "3 - Genético Simples", "4 - Genético c/ Heurística" }));
+        jComboBoxAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Simulated Annealing", "Hill-Climbing" }));
 
         jButtonSimular.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         jButtonSimular.setText("SIMULAR");
+        jButtonSimular.setRequestFocusEnabled(false);
+        jButtonSimular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSimularActionPerformed(evt);
+            }
+        });
+
+        jLabelHeuristica.setText("Aplicar Heurística?");
+
+        jComboBoxHeuristica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sim", "Não" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(62, 62, 62)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)))
-                            .addComponent(jSeparator1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(73, 73, 73)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxPDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonSimular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxPSaida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelPSaida)
-                                            .addComponent(jLabelPDestino)
-                                            .addComponent(jLabelAlgoritmo)
-                                            .addComponent(jComboBoxAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel2)
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)))
+                    .addComponent(jSeparator1)
+                    .addComponent(jPanelResultados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jLabel5)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(102, 102, 102)
+                                .addComponent(jLabel5)))
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxPSaida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxPDestino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelPSaida)
+                                    .addComponent(jLabelAlgoritmo)
+                                    .addComponent(jComboBoxAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelPDestino)
+                                    .addComponent(jLabelHeuristica)
+                                    .addComponent(jComboBoxHeuristica, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonSimular, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,32 +171,100 @@ public class MainApp extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelPSaida)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxPSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelPDestino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxPDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabelAlgoritmo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabelHeuristica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxHeuristica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonSimular)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimularActionPerformed
+        
+        // Instâncias para as salas de início e fim da rota
+        SalaVO salaInicial = controllerSala.FindById(jComboBoxPSaida.getSelectedItem().toString());
+        SalaVO salaFinal = controllerSala.FindById(jComboBoxPDestino.getSelectedItem().toString());
+        
+        if ("Simulated Annealing".equals(jComboBoxAlgoritmo.getSelectedItem().toString())) {
+            
+            if ("Sim".equals(jComboBoxHeuristica.getSelectedItem().toString())) {
+                
+                String rotaSimulatedComManhattan = controllerSala.CalcularRotaSimulatedManhattan(salaInicial, salaFinal);
+                jLabelResult.setText("<html>" +
+                                        "<p style=\"width:500px\">" +
+                                            "[Simulated com Manhattan]: Rota percorrida de " + salaInicial.getId() + " à " + salaFinal.getId() + ": " + rotaSimulatedComManhattan +
+                                        "<p>" +
+                                     "</html>");
+                
+                jLabelResult.setVisible(true);
+            }
+            else if("Não".equals(jComboBoxHeuristica.getSelectedItem().toString())) {
+                
+                String rotaSimulated = controllerSala.CalcularRotaSimulated(salaInicial, salaFinal);
+                jLabelResult.setText("<html>" +
+                                        "<p style=\"width:500px\">" +
+                                            "[Simulated]: Rota percorrida de " + salaInicial.getId() + " à " + salaFinal.getId() + ": " + rotaSimulated +
+                                        "<p>" +
+                                     "</html>");
+                jLabelResult.setVisible(true);
+            }
+            else {
+                
+                jLabelResult.setText("Heurística inválida!");
+                jLabelResult.setVisible(true);
+            }
+        }
+        else if ("Hill-Climbing".equals(jComboBoxAlgoritmo.getSelectedItem().toString())) {
+            
+            if ("Sim".equals(jComboBoxHeuristica.getSelectedItem().toString())) {
+                
+
+            }
+            else if("Não".equals(jComboBoxHeuristica.getSelectedItem().toString())) {
+                
+                String rotaHillClimb = controllerSala.CalcularRotaHillClimbing(salaInicial, salaFinal);
+                jLabelResult.setText("<html>" +
+                                        "<p style=\"width:500px\">" +
+                                            "[Hill-Climbing]: Rota percorrida de " + salaInicial.getId() + " à " + salaFinal.getId() + ": " + rotaHillClimb +
+                                        "<p>" +
+                                     "</html>");
+                
+                jLabelResult.setVisible(true);
+            }
+            else {
+                
+                jLabelResult.setText("Heurística inválida!");
+                jLabelResult.setVisible(true);
+            }
+        }
+        else {
+            
+        }
+    }//GEN-LAST:event_jButtonSimularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,6 +304,7 @@ public class MainApp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSimular;
     private javax.swing.JComboBox<String> jComboBoxAlgoritmo;
+    private javax.swing.JComboBox<String> jComboBoxHeuristica;
     private javax.swing.JComboBox<String> jComboBoxPDestino;
     private javax.swing.JComboBox<String> jComboBoxPSaida;
     private javax.swing.JLabel jLabel1;
@@ -213,9 +313,11 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelAlgoritmo;
+    private javax.swing.JLabel jLabelHeuristica;
     private javax.swing.JLabel jLabelPDestino;
     private javax.swing.JLabel jLabelPSaida;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabelResult;
+    private javax.swing.JPanel jPanelResultados;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
