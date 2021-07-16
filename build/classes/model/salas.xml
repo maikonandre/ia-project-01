@@ -67,7 +67,7 @@ and open the template in the editor.
     <sala id="T" x="4" y="4" pos="19" region="R">
         <vizinhos>P;S;U</vizinhos>
     </sala>
-    <sala id="U" x="5" y="2" pos="20" region="R">
+    <sala id="U" x="5" y="4" pos="20" region="R">
         <vizinhos>T</vizinhos>
     </sala>
 </salas>

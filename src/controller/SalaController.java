@@ -9,6 +9,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import vo.SalaVO;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
 
 /**
  *
@@ -107,8 +109,14 @@ public class SalaController {
                 
                 String[] vizinhos = salaInicial.getVizinhos();
                 
-                if(encontrou == false){
+                Random r = new Random();
+                int rnd = r.nextInt(2);
+                
+                if(rnd == 0) {
                     Arrays.sort(vizinhos);
+                }
+                else{
+                    Arrays.sort(vizinhos, Collections.reverseOrder());
                 }
                 
                 int loopVizinhos = 0;
