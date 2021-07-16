@@ -10,64 +10,64 @@ and open the template in the editor.
     <sala id="A" x="1" y="1" pos="0" region="L">
         <vizinhos>C</vizinhos>
     </sala>
-    <sala id="B" x="2" y="1" pos="1" region="L">
+    <sala id="B" x="1" y="2" pos="1" region="L">
         <vizinhos>C;D</vizinhos>
     </sala>
     <sala id="C" x="2" y="2" pos="2" region="L">
         <vizinhos>A;B;G</vizinhos>
     </sala>
-    <sala id="D" x="3" y="1" pos="3" region="L">
+    <sala id="D" x="4" y="1" pos="3" region="L">
         <vizinhos>B;E</vizinhos>
     </sala>
-    <sala id="E" x="4" y="1" pos="4" region="L">
+    <sala id="E" x="5" y="1" pos="4" region="L">
         <vizinhos>D;F</vizinhos>
     </sala>
-    <sala id="F" x="5" y="1" pos="5" region="L">
+    <sala id="F" x="7" y="1" pos="5" region="L">
         <vizinhos>E;J</vizinhos>
     </sala>
-    <sala id="G" x="1" y="2" pos="6" region="M">
+    <sala id="G" x="1" y="3" pos="6" region="M">
         <vizinhos>C;H;K</vizinhos>
     </sala>
-    <sala id="H" x="2" y="3" pos="7" region="M">
+    <sala id="H" x="3" y="3" pos="7" region="M">
         <vizinhos>G;K;I;L</vizinhos>
     </sala>
-    <sala id="I" x="3" y="2" pos="8" region="M">
+    <sala id="I" x="4" y="3" pos="8" region="M">
         <vizinhos>H;J</vizinhos>
     </sala>
-    <sala id="J" x="4" y="2" pos="9" region="M">
+    <sala id="J" x="6" y="3" pos="9" region="M">
         <vizinhos>I;M;F</vizinhos>
     </sala>
-    <sala id="K" x="1" y="3" pos="10" region="M">
+    <sala id="K" x="1" y="4" pos="10" region="M">
         <vizinhos>G;H;N</vizinhos>
     </sala>
-    <sala id="L" x="3" y="3" pos="11" region="M">
+    <sala id="L" x="4" y="4" pos="11" region="M">
         <vizinhos>H;M</vizinhos>
     </sala>
-    <sala id="M" x="4" y="3" pos="12" region="M">
+    <sala id="M" x="6" y="4" pos="12" region="M">
         <vizinhos>J;L;P</vizinhos>
     </sala>
-    <sala id="N" x="1" y="4" pos="13" region="M">
+    <sala id="N" x="1" y="5" pos="13" region="M">
         <vizinhos>K;Q;O</vizinhos>
     </sala>
-    <sala id="O" x="2" y="4" pos="14" region="M">
+    <sala id="O" x="3" y="5" pos="14" region="M">
         <vizinhos>N;P</vizinhos>
     </sala>
-    <sala id="P" x="3" y="4" pos="15" region="M">
+    <sala id="P" x="4" y="6" pos="15" region="M">
         <vizinhos>O;M;T</vizinhos>
     </sala>
-    <sala id="Q" x="1" y="5" pos="16" region="R">
+    <sala id="Q" x="1" y="7" pos="16" region="R">
         <vizinhos>N;R</vizinhos>
     </sala>
-    <sala id="R" x="2" y="5" pos="17" region="R">
+    <sala id="R" x="3" y="7" pos="17" region="R">
         <vizinhos>Q;S</vizinhos>
     </sala>
-    <sala id="S" x="3" y="5" pos="18" region="R">
+    <sala id="S" x="4" y="7" pos="18" region="R">
         <vizinhos>R;T</vizinhos>
     </sala>
-    <sala id="T" x="4" y="4" pos="19" region="R">
+    <sala id="T" x="5" y="7" pos="19" region="R">
         <vizinhos>P;S;U</vizinhos>
     </sala>
-    <sala id="U" x="5" y="4" pos="20" region="R">
+    <sala id="U" x="7" y="7" pos="20" region="R">
         <vizinhos>T</vizinhos>
     </sala>
 </salas>
