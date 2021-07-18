@@ -321,11 +321,18 @@ public class SalaController {
                     // Verifica se a sala destino está na mesma região da sala iterada
                     if (salaIterator.getRegion().equals(salaFinal.getRegion())) {
 
-                        // Verifica a distância da sala iterada é menor que a atual melhor opção
-                        if (passosIterator < passosMelhorOp) {
-                            melhorOpcao = salaIterator;
-                            ultVizinho = vizinho;
+                        // Verifica se a sala destino está na mesma região da sala melhor opção
+                        if (melhorOpcao.getRegion().equals(salaFinal.getRegion())) {
+                            // Verifica a distância da sala iterada é menor que a atual melhor opção
+                            if (passosIterator < passosMelhorOp) {
+                                melhorOpcao = salaIterator;
+                                ultVizinho = vizinho;
+                            }
                         }
+                        else {
+                            melhorOpcao = salaIterator;
+                            ultVizinho = vizinho; 
+                        }                        
 
                     }
                     else {
