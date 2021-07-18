@@ -219,6 +219,11 @@ public class SalaController {
                         
                         loop2 += 1;
                     }
+                    else{
+                        if(!VerificarPopulacaoLista(provaveisCaminhos) && loop2 == vizinhos.length -1) {
+                            provaveisCaminhos[loop2] = s;
+                        }
+                    }
                 }
                 
                 if(provaveisCaminhos.length == 0) {
@@ -277,7 +282,19 @@ public class SalaController {
         
         return rota;
     }
-    
+    public boolean VerificarPopulacaoLista(String[] loop) {
+        
+        boolean populado = false;
+        
+        for(int i = 0; i < loop.length; i++) {
+            if(loop[i] != null){
+                populado = true;
+                break;
+            }
+        }
+        
+        return populado;
+    }
     /* Método p/ cálculo de rota utilizando Hill-Climbing */
     public String CalcularRotaHillClimbing(SalaVO salaInicial, SalaVO salaFinal) {
         
